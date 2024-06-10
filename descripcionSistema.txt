@@ -1,0 +1,4 @@
+
+29/05/24 ===> Avance vistas del dashboard admin-user, elimine css inecesarios y en lo que es vistas funcionan sin recargar solo ocultando su contenido de cada opción y asi solo se mostrara el contendio de la opcion elegida.
+01/06/24 ===> Inicio de la arquitectura del sistema 
+

@@ -1,0 +1,1 @@
+Al momento de redireccionar al login que se encuentra en sistema/index.php hay un error de tipo 403, no lo estoy arreglando solo estoy usando el url local para que lo redireccione
