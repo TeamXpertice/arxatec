@@ -69,7 +69,7 @@
 
           <script>
             function enviandoLogin(){
-            window.location.href="http://localhost/Xpertice2024.github.io/sistema/login/index.php";
+            window.location.href="http://localhost/arxatec/sistema/login/index.php";
             console.log("Si esta enviando al login")
             }
 

@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArxaTEC</title>
-  <link rel="shortcut icon" href="./assets/images/logarxa1.png" type="image/svg+xml">
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="shortcut icon" href="../images/logarxa1.png" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -89,7 +89,7 @@
   include 'footer.php';
   ?>
 
-  <script src="./assets/js/script.js"></script>
+  <script src="../js/script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
