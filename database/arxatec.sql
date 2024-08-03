@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2024 a las 11:58:15
+-- Tiempo de generación: 25-07-2024 a las 03:52:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -138,30 +138,6 @@ INSERT INTO `especialidades` (`especialidad_id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `register`
---
-
-CREATE TABLE `register` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `usertype` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `register`
---
-
-INSERT INTO `register` (`id`, `username`, `email`, `password`, `usertype`) VALUES
-(24, 'Admin', 'admin@gmail.com', 'admin', 'admin'),
-(25, 'Soporte', 'soporte@gmail.com', 'soporte', 'admin'),
-(27, 'sanes', 'sanes@gmail.com', 'sanes', 'user'),
-(28, 'Yonatan Alesander Ordoñez Diego', 'alex.od2408@gmail.com', 'arxatec123', 'user');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `respuestas`
 --
 
@@ -284,12 +260,6 @@ ALTER TABLE `especialidades`
   ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
--- Indices de la tabla `register`
---
-ALTER TABLE `register`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
@@ -332,12 +302,6 @@ ALTER TABLE `consultas`
 --
 ALTER TABLE `especialidades`
   MODIFY `especialidad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `register`
---
-ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas`

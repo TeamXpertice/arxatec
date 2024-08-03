@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Asegúrate de que las solicitudes no afecten a los archivos y directorios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Excluye login.php y 404/index.html de la redirección a login.php
+RewriteCond %{REQUEST_URI} !^/arxatec/auth/(login\.php|404/index\.html) [NC]
+# Redirige cualquier solicitud que no corresponda a un archivo o directorio existente a login.php
+RewriteRule ^.*$ /arxatec/auth/login.php [L]
+
+# Redirige cualquier solicitud que tenga algo después de login.php a 404/index.html
+RewriteCond %{REQUEST_URI} ^/arxatec/auth/login\.php [NC]
+RewriteCond %{REQUEST_URI} ^/arxatec/auth/login\.php/.+ [OR]
+RewriteCond %{REQUEST_URI} ^/arxatec/auth/login\.php\?.+
+RewriteRule ^.*$ /arxatec/auth/404/index.html [L]
