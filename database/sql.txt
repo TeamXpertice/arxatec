@@ -1,15 +1,16 @@
--- CREACION DE LA BASE DE DATOS DE arxatec
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS arxatec1;
 
-CREATE DATABASE arxatec;
-
+-- Usar la base de datos
 USE arxatec;
 
--- Crear la tabla de usuarios con rol
-CREATE TABLE IF NOT EXISTS usuarios_arxatec (
+-- Crear la tabla de usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_de_usuario VARCHAR(50) NOT NULL UNIQUE,
-    correo_electronico VARCHAR(100) NOT NULL UNIQUE,
-    contraseña VARCHAR(255) NOT NULL,
-    rol ENUM('user', 'admin') NOT NULL DEFAULT 'user',
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE,
+    clave_hash VARCHAR(255) NOT NULL,
+    rol ENUM('usuario', 'admin') DEFAULT 'usuario',
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

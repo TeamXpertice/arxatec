@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>ArxaTEC - Inicio de Sesión</title>
-
-    <!-- Fuentes personalizadas para esta plantilla -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Estilos personalizados para esta plantilla -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
+<?php
+session_start();
+include('assets/includes/header.php');
+?>
 
 <body class="bg-gradient-primary">
 
@@ -38,37 +21,34 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
+                                        <?php
+
+                                        if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+                                            echo '<h2 class="bg-danger text-white"> ' . $_SESSION['status'] . ' </h2>';
+                                            unset($_SESSION['status']);
+                                        }
+                                        ?>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="login_code.php" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa tu dirección de correo...">
+                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingrese su correo...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
+                                            <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Recuérdame</label>
+                                                <label class="custom-control-label" for="customCheck">Recuerdame
+                                                </label>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn btn-primary btn-user btn-block">
-                                            Iniciar Sesión
-                                        </a>
-                                        <hr>
-                                        <a href="#" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Iniciar Sesión con Google
-                                        </a>
-                                        <a href="#" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Iniciar Sesión con Facebook
-                                        </a>
+
+                                        <button type="submit" name="login_btn" class="btn btn-primary btn-user btn-block"> Ingresar</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.php">¿Olvidaste tu contraseña?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.php">¡Crea una cuenta!</a>
                                     </div>
                                 </div>
                             </div>
@@ -82,15 +62,9 @@
 
     </div>
 
-    <!-- Núcleo de JavaScript de Bootstrap -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Núcleo de JavaScript del plugin -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Scripts personalizados para todas las páginas -->
-    <script src="js/sb-admin-2.min.js"></script>
+    <?php
+    include 'assets/includes/scripts.php';
+    ?>
 
 </body>
 
