@@ -31,7 +31,7 @@
     <!-- Gestion de Usuarios -->
 
     <li class="nav-item">
-        <a class="nav-link" href="register.php">
+        <a class="nav-link" href="user_management.php">
             <i class="fas fa-user fa-2x fa-chart-area"></i>
             <span>Gestión de Usuarios</span></a>
     </li>
@@ -54,7 +54,7 @@
 
     <!-- Gestion de Casos -->
     <li class="nav-item">
-        <a class="nav-link" href="casos.php">
+        <a class="nav-link" href="case_management.php">
             <i class="fas fa-user fa-2x fa-chart-area"></i>
             <span>Gestión de Casos</span></a>
     </li>

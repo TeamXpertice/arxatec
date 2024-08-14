@@ -1,0 +1,7 @@
+-- Actualizar los id desde 1
+
+SET @new_id = 0;
+
+UPDATE tu_tabla
+SET id = (@new_id := @new_id + 1)
+ORDER BY id;

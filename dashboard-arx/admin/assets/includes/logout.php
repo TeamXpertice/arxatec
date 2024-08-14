@@ -12,7 +12,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
 
-                <form action="../../../../auth/logout.php" method="POST">
+                <form action="../../../../auth/php/logout.php" method="POST">
 
                     <button type="submit" name="logout_btn" class="btn btn-primary">Cerrar sesión</button>
 

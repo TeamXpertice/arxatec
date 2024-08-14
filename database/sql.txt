@@ -1,16 +1,60 @@
 -- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS arxatec1;
+CREATE DATABASE IF NOT EXISTS arxatec;
 
 -- Usar la base de datos
 USE arxatec;
 
--- Crear la tabla de usuarios
-CREATE TABLE IF NOT EXISTS usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    correo VARCHAR(100) NOT NULL UNIQUE,
-    clave_hash VARCHAR(255) NOT NULL,
-    rol ENUM('usuario', 'admin') DEFAULT 'usuario',
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- Crear la tabla usuarios
+CREATE TABLE usuarios (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    usertype ENUM('admin', 'cliente', 'abogado') NOT NULL,
+    profile_image VARCHAR(255),
+    dni VARCHAR(20),
+    address VARCHAR(255),
+    phone_number VARCHAR(20),
+    additional_phone VARCHAR(20),
+    gender ENUM('Masculino', 'Femenino', 'Otro', 'Ninguno'),
+    date_of_birth DATE,
+    status ENUM('activo', 'suspendido') NOT NULL DEFAULT 'activo',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Crear la tabla cases
+CREATE TABLE cases (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    case_name VARCHAR(255) NOT NULL,
+    status ENUM('Abierto', 'Cerrado', 'Pendiente') NOT NULL DEFAULT 'Pendiente',
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insertar un usuario con credenciales de administrador
+INSERT INTO usuarios (username, email, password, usertype, dni, address, phone_number, additional_phone, gender, date_of_birth, status)
+VALUES ('admin', 'admin@gmail.com', 'admin', 'admin', '12345678', '123 Main St', '555-1234', '555-5678', 'Masculino', '1980-01-01', 'activo');
+
+-- Insertar 20 casos inventados en la tabla cases
+INSERT INTO cases (case_name, status)
+VALUES 
+('Disputa de Propiedad', 'Abierto'),
+('Incumplimiento de Contrato', 'Cerrado'),
+('Violación de Derechos Civiles', 'Pendiente'),
+('Acuerdo de Asociación Comercial', 'Abierto'),
+('Robo de Propiedad Intelectual', 'Cerrado'),
+('Terminación de Empleo', 'Pendiente'),
+('Acuerdo de Divorcio', 'Abierto'),
+('Reclamación por Lesiones Personales', 'Cerrado'),
+('Transacción Inmobiliaria', 'Abierto'),
+('Fraude al Consumidor', 'Pendiente'),
+('Demanda por Difamación', 'Cerrado'),
+('Declaración de Bancarrota', 'Abierto'),
+('Investigación por Evasión de Impuestos', 'Pendiente'),
+('Disputa por Fusión Corporativa', 'Cerrado'),
+('Infracción de Patente', 'Abierto'),
+('Caso de Inmigración', 'Cerrado'),
+('Violación de Seguridad Informática', 'Pendiente'),
+('Violación de Ley Ambiental', 'Abierto'),
+('Disputa de Herencia Familiar', 'Cerrado'),
+('Acuerdo de Arrendamiento Comercial', 'Pendiente');

@@ -20,4 +20,14 @@
 <!-- SweetAlert2 JavaScript library for customizable alerts and popups -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<!-- 
+Script para manejar el evento de retroceso del navegador. 
+Si el usuario intenta volver atrás después de iniciar sesión, 
+se mostrará un modal para confirmar el cierre de sesión. 
+-->
+<script src="../../assets/js/logoutModalTrigger.js"></script>
+
+<!-- Incluye las librerías necesarias -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.5/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.5/cropper.min.js"></script>
 <!-- End of scripts -->

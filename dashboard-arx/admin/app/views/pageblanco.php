@@ -1,5 +1,5 @@
 <?php
-include('../../../../auth/security.php');
+require_once('../../../../auth/php/security.php');
 include '../../assets/includes/header.php';
 ?>
 

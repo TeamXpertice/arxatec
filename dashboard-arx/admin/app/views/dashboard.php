@@ -1,5 +1,5 @@
 <?php
-include('../../../../auth/security.php');
+require_once('../../../../auth/php/security.php');
 include '../../assets/includes/header.php';
 ?>
 
@@ -40,7 +40,7 @@ include '../../assets/includes/header.php';
                                                 <?php
                                                 // require '../../../../database/dbconfig.php';
                                                 $connection = mysqli_connect("localhost", "root", "", "arxatec");
-                                                $query = "SELECT id FROM register ORDER BY id";
+                                                $query = "SELECT id FROM usuarios ORDER BY id";
                                                 $query_run = mysqli_query($connection, $query);
                                                 $row = mysqli_num_rows($query_run);
                                                 echo '<h4>  ' . $row . ' </h4>'
