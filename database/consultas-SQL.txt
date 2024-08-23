@@ -2,6 +2,6 @@
 
 SET @new_id = 0;
 
-UPDATE tu_tabla
+UPDATE usuarios
 SET id = (@new_id := @new_id + 1)
 ORDER BY id;

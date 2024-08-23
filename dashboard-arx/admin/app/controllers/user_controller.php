@@ -1,5 +1,5 @@
 <?php
-require_once '../models/user.php';
+require_once '../models/user_model.php';
 require_once('../../../../auth/php/security.php');
 
 class UserController
@@ -35,9 +35,9 @@ class UserController
         unset($data['confirm_password']);
 
         // Copiar la imagen por defecto con el nombre del DNI
-        $defaultImagePath = '../../uploads/profile_images/default.png';
+        $defaultImagePath = '../../../shared/uploads/profile_images/default.png';
         $newFileName = $data['dni'] . '.png';
-        $dest_path = '../../uploads/profile_images/' . $newFileName;
+        $dest_path = '../../../shared/uploads/profile_images/' . $newFileName;
         if (!copy($defaultImagePath, $dest_path)) {
             echo "Error al copiar la imagen por defecto.";
             exit();
@@ -63,21 +63,35 @@ class UserController
 
         // Verificar si el DNI ha cambiado
         if ($data['dni'] !== $currentUser['dni']) {
-            // Eliminar la imagen antigua si no es la predeterminada
-            $oldImagePath = $currentUser['profile_image'];
-            if (file_exists($oldImagePath) && $oldImagePath !== '../../uploads/profile_images/default.png') {
-                unlink($oldImagePath);
-            }
+            // Verificar si el usuario tiene una imagen de perfil personalizada
+            if ($currentUser['profile_image'] !== '../../../shared/uploads/profile_images/default.png') {
+                // Eliminar la imagen antigua si no es la predeterminada
+                $oldImagePath = $currentUser['profile_image'];
+                if (file_exists($oldImagePath) && $oldImagePath !== '../../../shared/uploads/profile_images/default.png') {
+                    // Obtener la extensión del archivo antiguo
+                    $fileExtension = pathinfo($oldImagePath, PATHINFO_EXTENSION);
+                    $newFileName = $data['dni'] . '.' . $fileExtension;
+                    $newFilePath = dirname($oldImagePath) . '/' . $newFileName;
 
-            // Copiar la imagen nueva con el nuevo DNI
-            $defaultImagePath = '../../uploads/profile_images/default.png';
-            $newFileName = $data['dni'] . '.png';
-            $dest_path = '../../uploads/profile_images/' . $newFileName;
-            if (!copy($defaultImagePath, $dest_path)) {
-                echo "Error al copiar la imagen por defecto.";
-                exit();
+                    // Renombrar el archivo
+                    if (!rename($oldImagePath, $newFilePath)) {
+                        echo "Error al renombrar la imagen de perfil.";
+                        exit();
+                    }
+
+                    $data['profile_image'] = $newFilePath; // Actualizar la ruta en la base de datos
+                }
+            } else {
+                // Copiar la imagen nueva con el nuevo DNI
+                $defaultImagePath = '../../../shared/uploads/profile_images/default.png';
+                $newFileName = $data['dni'] . '.png';
+                $dest_path = '../../../shared/uploads/profile_images/' . $newFileName;
+                if (!copy($defaultImagePath, $dest_path)) {
+                    echo "Error al copiar la imagen por defecto.";
+                    exit();
+                }
+                $data['profile_image'] = $dest_path; // Guardar la ruta completa en la base de datos
             }
-            $data['profile_image'] = $dest_path; // Guardar la ruta completa en la base de datos
         } else {
             // Mantener la imagen existente si el DNI no cambia
             $data['profile_image'] = $currentUser['profile_image'];
@@ -103,7 +117,7 @@ class UserController
         $result = $this->userModel->deleteUser($id);
         if ($result) {
             // Eliminar la imagen del perfil del usuario
-            if (file_exists($profileImagePath) && $profileImagePath !== '../../uploads/profile_images/default.png') {
+            if (file_exists($profileImagePath) && $profileImagePath !== '../../../shared/uploads/profile_images/default.png') {
                 unlink($profileImagePath);
             }
             header("Location: ../views/user_management.php");
@@ -111,49 +125,6 @@ class UserController
         } else {
             echo "Error al eliminar el usuario.";
         }
-    }
-
-    public function changePassword($id, $currentPassword, $newPassword, $confirmPassword)
-    {
-        // Obtener la información actual del usuario
-        $user = $this->getUserById($id);
-
-        // Verificar la contraseña actual
-        if ($currentPassword !== $user['password']) {
-            $_SESSION['message'] = "La contraseña actual es incorrecta.";
-            header("Location: ../views/profile.php");
-            exit();
-        }
-
-        // Verificar que las nuevas contraseñas coincidan
-        if ($newPassword !== $confirmPassword) {
-            $_SESSION['message'] = "Las nuevas contraseñas no coinciden.";
-            header("Location: ../views/profile.php");
-            exit();
-        }
-
-        // Actualizar la contraseña
-        $result = $this->userModel->changePassword($id, $newPassword);
-
-        if ($result) {
-            $_SESSION['message'] = "Contraseña actualizada correctamente.";
-        } else {
-            $_SESSION['message'] = "Error al actualizar la contraseña.";
-        }
-
-        header("Location: ../views/profile.php");
-        exit();
-    }
-    // Método para actualizar la información de contacto
-    public function updateContactInfo($userId, $address, $phoneNumber, $additionalPhone)
-    {
-        return $this->userModel->updateContactInfo($userId, $address, $phoneNumber, $additionalPhone);
-    }
-
-    // Método para actualizar la información adicional (género)
-    public function updateAdditionalInfo($userId, $gender)
-    {
-        return $this->userModel->updateAdditionalInfo($userId, $gender);
     }
 }
 
@@ -196,43 +167,4 @@ if (isset($_POST['update_user'])) {
 if (isset($_POST['delete_btn'])) {
     $id = intval($_POST['delete_id']);
     $controller->deleteUser($id);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $action = $_POST['action'];
-    $userId = $_POST['user_id'];
-
-    $userController = new UserController();
-
-    if (isset($_POST['change_password'])) {
-        $id = $_SESSION['id']; // Obtener el ID del usuario desde la sesión
-        $currentPassword = $_POST['currentPassword'];
-        $newPassword = $_POST['newPassword'];
-        $confirmPassword = $_POST['confirmPassword'];
-        $controller->changePassword($id, $currentPassword, $newPassword, $confirmPassword);
-    }
-
-    if ($action == 'updateContactInfo') {
-        $address = $_POST['address'];
-        $phoneNumber = $_POST['phone_number'];
-        $additionalPhone = $_POST['additional_phone'];
-
-        if ($userController->updateContactInfo($userId, $address, $phoneNumber, $additionalPhone)) {
-            $_SESSION['message'] = 'Información de contacto actualizada con éxito.';
-        } else {
-            $_SESSION['message'] = 'Error al actualizar la información de contacto.';
-        }
-        header('Location: ../views/profile.php');
-    }
-
-    if ($action == 'updateAdditionalInfo') {
-        $gender = $_POST['gender'];
-
-        if ($userController->updateAdditionalInfo($userId, $gender)) {
-            $_SESSION['message'] = 'Información adicional actualizada con éxito.';
-        } else {
-            $_SESSION['message'] = 'Error al actualizar la información adicional.';
-        }
-        header('Location: ../views/profile.php');
-    }
 }

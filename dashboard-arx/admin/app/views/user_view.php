@@ -45,9 +45,9 @@ if (isset($_GET['token'])) {
                                             <label>Imagen de Perfil</label>
                                             <div class="mb-3">
                                                 <?php if (!empty($user['profile_image'])): ?>
-                                                    <img src="../../uploads/profile_images/<?php echo htmlspecialchars($user['profile_image']); ?>" alt="Imagen de Perfil" class="img-fluid rounded-circle border" style="max-width: 200px; max-height: 200px;">
+                                                    <img src="../../../shared/uploads/profile_images/<?php echo htmlspecialchars($user['profile_image']); ?>" alt="Imagen de Perfil" class="img-fluid rounded-circle border" style="max-width: 200px; max-height: 200px;">
                                                 <?php else: ?>
-                                                    <img src="../../uploads/profile_images/default.png" alt="Imagen de Perfil" class="img-fluid rounded-circle border" style="max-width: 200px; max-height: 200px;">
+                                                    <img src="../../../shared/uploads/profile_images/default.png" alt="Imagen de Perfil" class="img-fluid rounded-circle border" style="max-width: 200px; max-height: 200px;">
                                                 <?php endif; ?>
                                             </div>
                                         </div>
