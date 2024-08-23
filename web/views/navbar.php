@@ -65,7 +65,7 @@
 
         <span>Profile</span>
       </button>
-      <a href="../../auth/login.php">
+      <a href="../../auth">
         <button class="header-top-btn">Iniciar Sesion</button>
       </a>
 

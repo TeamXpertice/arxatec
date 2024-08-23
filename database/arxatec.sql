@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2024 a las 03:52:11
+-- Tiempo de generación: 03-08-2024 a las 20:08:18
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,22 +61,6 @@ CREATE TABLE `comentarios` (
   `usuario_id` int(11) NOT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`comentario_id`, `contenido`, `respuesta_id`, `usuario_id`, `fecha_creacion`) VALUES
-(1, 'Gracias, revisaré las cláusulas.', 1, 1, '2024-07-21 01:53:55'),
-(2, 'Acudiré a la autoridad, muchas gracias.', 2, 2, '2024-07-21 01:53:55'),
-(3, 'Estoy recopilando los documentos, gracias.', 3, 3, '2024-07-21 01:53:55'),
-(4, 'Prepararé la demanda, gracias.', 4, 4, '2024-07-21 01:53:55'),
-(5, 'Documentaré los incidentes, muchas gracias.', 5, 5, '2024-07-21 01:53:55'),
-(6, 'He contratado a un contador, gracias.', 6, 1, '2024-07-21 01:53:55'),
-(7, 'Iniciaré los trámites, gracias.', 7, 2, '2024-07-21 01:53:55'),
-(8, 'Revisaré el contrato, muchas gracias.', 8, 3, '2024-07-21 01:53:55'),
-(9, 'Prepararé la denuncia, gracias.', 9, 4, '2024-07-21 01:53:55'),
-(10, 'Revisaré las leyes, muchas gracias.', 10, 5, '2024-07-21 01:53:55');
 
 -- --------------------------------------------------------
 
@@ -202,29 +186,34 @@ INSERT INTO `seguimiento_consultas` (`seguimiento_id`, `consulta_id`, `estado`, 
 --
 
 CREATE TABLE `usuarios` (
-  `usuario_id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `correo_electronico` varchar(100) NOT NULL,
-  `contrasena` varchar(255) NOT NULL,
-  `rol` enum('cliente','abogado') NOT NULL,
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `usertype` varchar(20) NOT NULL,
+  `profile_image` varchar(255) DEFAULT NULL,
+  `dni` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `additional_phone` varchar(20) DEFAULT NULL,
+  `gender` enum('Masculino','Femenino','Otro') DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `nombre`, `correo_electronico`, `contrasena`, `rol`, `fecha_creacion`) VALUES
-(1, 'Juan Pérez', 'juanperez@example.com', 'hashedpassword1', 'cliente', '2024-07-21 01:53:55'),
-(2, 'María García', 'mariagarcia@example.com', 'hashedpassword2', 'cliente', '2024-07-21 01:53:55'),
-(3, 'Carlos Ruiz', 'carlosruiz@example.com', 'hashedpassword3', 'cliente', '2024-07-21 01:53:55'),
-(4, 'Ana López', 'analopez@example.com', 'hashedpassword4', 'cliente', '2024-07-21 01:53:55'),
-(5, 'Luis Gómez', 'luisgomez@example.com', 'hashedpassword5', 'cliente', '2024-07-21 01:53:55'),
-(6, 'Beatriz Fernández', 'beatrizfernandez@example.com', 'hashedpassword6', 'abogado', '2024-07-21 01:53:55'),
-(7, 'Santiago Moreno', 'santiagomoreno@example.com', 'hashedpassword7', 'abogado', '2024-07-21 01:53:55'),
-(8, 'Paula Torres', 'paulatorres@example.com', 'hashedpassword8', 'abogado', '2024-07-21 01:53:55'),
-(9, 'Jorge Ramírez', 'jorgeramirez@example.com', 'hashedpassword9', 'abogado', '2024-07-21 01:53:55'),
-(10, 'Lucía Martínez', 'luciamartinez@example.com', 'hashedpassword10', 'abogado', '2024-07-21 01:53:55');
+INSERT INTO `usuarios` (`id`, `username`, `email`, `password`, `usertype`, `profile_image`, `dni`, `address`, `phone_number`, `additional_phone`, `gender`, `date_of_birth`) VALUES
+(24, 'Admin12', 'admin@gmail.com', 'admin', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 'Soporte', 'soporte@gmail.com', 'soporte', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 'sanes', 'sanes@gmail.com', 'sanes', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 'Yonatan Alesander Ordoñez Diego', 'alex.od2408@gmail.com', 'arxatec123', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(32, 'administrador', 'administrador@GMAIL.PE', 'administrador', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(33, 'administrador', 'administrador@GMAIL.PE', 'administrador', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, 'frank', 'frank@gmailpe', 'frank', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(46, 'yens_paredez', 'labasecowork@gmail.com', '123', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(47, '123456789', '123456789@gmail.pe', '123456789', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -278,8 +267,7 @@ ALTER TABLE `seguimiento_consultas`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`usuario_id`),
-  ADD UNIQUE KEY `correo_electronico` (`correo_electronico`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -319,7 +307,7 @@ ALTER TABLE `seguimiento_consultas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Restricciones para tablas volcadas
@@ -329,28 +317,19 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `abogado_especialidades`
 --
 ALTER TABLE `abogado_especialidades`
-  ADD CONSTRAINT `abogado_especialidades_ibfk_1` FOREIGN KEY (`abogado_id`) REFERENCES `usuarios` (`usuario_id`),
   ADD CONSTRAINT `abogado_especialidades_ibfk_2` FOREIGN KEY (`especialidad_id`) REFERENCES `especialidades` (`especialidad_id`);
 
 --
 -- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`respuesta_id`) REFERENCES `respuestas` (`respuesta_id`),
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
-
---
--- Filtros para la tabla `consultas`
---
-ALTER TABLE `consultas`
-  ADD CONSTRAINT `consultas_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `usuarios` (`usuario_id`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`respuesta_id`) REFERENCES `respuestas` (`respuesta_id`);
 
 --
 -- Filtros para la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`consulta_id`) REFERENCES `consultas` (`consulta_id`),
-  ADD CONSTRAINT `respuestas_ibfk_2` FOREIGN KEY (`abogado_id`) REFERENCES `usuarios` (`usuario_id`);
+  ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`consulta_id`) REFERENCES `consultas` (`consulta_id`);
 
 --
 -- Filtros para la tabla `seguimiento_consultas`

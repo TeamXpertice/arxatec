@@ -1,16 +1,83 @@
 -- Crear la base de datos
-CREATE DATABASE IF NOT EXISTS arxatec1;
+CREATE DATABASE IF NOT EXISTS arxatec;
 
 -- Usar la base de datos
 USE arxatec;
 
--- Crear la tabla de usuarios
-CREATE TABLE IF NOT EXISTS usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    correo VARCHAR(100) NOT NULL UNIQUE,
-    clave_hash VARCHAR(255) NOT NULL,
-    rol ENUM('usuario', 'admin') DEFAULT 'usuario',
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- Crear la tabla usuarios
+CREATE TABLE usuarios (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    usertype ENUM('admin', 'cliente', 'abogado') NOT NULL,
+    profile_image VARCHAR(255),
+    dni VARCHAR(20) UNIQUE,
+    address VARCHAR(255),
+    phone_number VARCHAR(20),
+    additional_phone VARCHAR(20),
+    gender ENUM('Masculino', 'Femenino', 'Otro', 'Ninguno'),
+    date_of_birth DATE,
+    status ENUM('activo', 'suspendido') NOT NULL DEFAULT 'activo',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Crear la tabla cases con los nuevos valores de status y el campo description
+CREATE TABLE cases (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    case_name VARCHAR(255) NOT NULL,
+    expediente_number VARCHAR(50) UNIQUE NOT NULL,
+    description TEXT,
+    status ENUM('INICIO', 'NOTIFICACIÓN', 'EN TRÁMITE', 'EVALUACIÓN', 'SENTENCIA', 'EJECUCIÓN', 'ARCHIVO', 'APELACIÓN', 'CUMPLIMIENTO', 'CONCLUSIÓN') NOT NULL DEFAULT 'INICIO',
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    client_dni VARCHAR(20),
+    lawyer_dni VARCHAR(20),
+    FOREIGN KEY (client_dni) REFERENCES usuarios(dni),
+    FOREIGN KEY (lawyer_dni) REFERENCES usuarios(dni)
+);
+
+-- Insertar usuarios
+INSERT INTO usuarios (username, email, password, usertype, dni, address, phone_number, additional_phone, gender, date_of_birth, status, profile_image)
+VALUES 
+('admin', 'admin@gmail.com', 'admin', 'admin', 'ADMIN1234', '123 Main St', '555-1234', '555-5678', 'Masculino', '1980-01-01', 'activo', '../../../shared/uploads/profile_images/768822091.png'),
+('cliente', 'cliente@gmail.com', 'cliente', 'cliente', 'CLI1234', 'Calle del Cliente', '555-0000', '555-1111', 'Masculino', '1985-05-05', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('abogado', 'abogado@gmail.com', 'abogado', 'abogado', 'ABG1234', 'Calle del Abogado', '555-2222', '555-3333', 'Masculino', '1986-06-06', 'activo', '../../../shared/uploads/profile_images/abogado.png'),
+-- Insertar clientes adicionales
+('Laura González', 'laura.gonzalez@example.com', 'laura123', 'cliente', 'LG123456', 'Calle Falsa 123', '555-1122', '555-3344', 'Femenino', '1987-04-21', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('Carlos Pérez', 'carlos.perez@example.com', 'carlos123', 'cliente', 'CP234567', 'Avenida Siempre Viva 742', '555-2233', '555-4455', 'Masculino', '1991-09-14', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('Ana Martínez', 'ana.martinez@example.com', 'ana123', 'cliente', 'AM345678', 'Calle del Sol 54', '555-3344', '555-5566', 'Femenino', '1983-02-10', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('Luis Fernández', 'luis.fernandez@example.com', 'luis123', 'cliente', 'LF456789', 'Paseo de la Reforma 456', '555-4455', '555-6677', 'Masculino', '1990-12-05', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('María Gómez', 'maria.gomez@example.com', 'maria123', 'cliente', 'MG567890', 'Boulevard de los Ilustres 23', '555-5566', '555-7788', 'Femenino', '1988-06-17', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('Jorge Ramírez', 'jorge.ramirez@example.com', 'jorge123', 'cliente', 'JR678901', 'Calle del Prado 89', '555-6677', '555-8899', 'Masculino', '1992-11-22', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+-- Insertar abogados adicionales
+('Pedro Ruiz', 'pedro.ruiz@example.com', 'pedro123', 'abogado', 'PR123456', 'Calle Mayor 1', '555-7788', '555-9900', 'Masculino', '1985-03-12', 'activo', '../../../shared/uploads/profile_images/abogado.png'),
+('Elena Rodríguez', 'elena.rodriguez@example.com', 'elena123', 'abogado', 'ER234567', 'Avenida Libertad 45', '555-8899', '555-0011', 'Femenino', '1989-08-29', 'activo', '../../../shared/uploads/profile_images/abogado.png'),
+('Ricardo López', 'ricardo.lopez@example.com', 'ricardo123', 'abogado', 'RL345678', 'Calle de la Paz 78', '555-9900', '555-1122', 'Masculino', '1992-07-03', 'activo', '../../../shared/uploads/profile_images/abogado.png'),
+('Sofía Herrera', 'sofia.herrera@example.com', 'sofia123', 'abogado', 'SH456789', 'Boulevard del Norte 101', '555-0011', '555-2233', 'Femenino', '1984-05-25', 'activo', '../../../shared/uploads/profile_images/abogado.png'),
+('Manuel Ortega', 'manuel.ortega@example.com', 'manuel123', 'abogado', 'MO567890', 'Calle del Mar 56', '555-2233', '555-3344', 'Masculino', '1990-10-15', 'activo', '../../../shared/uploads/profile_images/abogado.png'),
+('Isabel Vargas', 'isabel.vargas@example.com', 'isabel123', 'abogado', 'IV678901', 'Calle de los Ángeles 89', '555-3344', '555-4455', 'Femenino', '1986-04-28', 'activo', '../../../shared/uploads/profile_images/abogado.png');
+
+-- Insertar casos
+INSERT INTO cases (case_name, expediente_number, description, status, client_dni, lawyer_dni)
+VALUES 
+('Disputa de Propiedad', 'EXP0001', 'Disputa sobre la titularidad de un inmueble.', 'INICIO', 'LG123456', 'PR123456'),
+('Incumplimiento de Contrato', 'EXP0002', 'Caso de incumplimiento de un contrato comercial.', 'NOTIFICACIÓN', 'CP234567', 'ER234567'),
+('Violación de Derechos Civiles', 'EXP0003', 'Reclamación por violación de derechos civiles.', 'EN TRÁMITE', 'AM345678', 'RL345678'),
+('Acuerdo de Asociación Comercial', 'EXP0004', 'Negociación de un acuerdo de asociación.', 'EVALUACIÓN', 'LF456789', 'SH456789'),
+('Robo de Propiedad Intelectual', 'EXP0005', 'Demanda por robo de propiedad intelectual.', 'SENTENCIA', 'MG567890', 'MO567890'),
+('Terminación de Empleo', 'EXP0006', 'Caso de terminación injusta de empleo.', 'EJECUCIÓN', 'JR678901', 'IV678901'),
+('Acuerdo de Divorcio', 'EXP0007', 'Negociación de un acuerdo de divorcio.', 'ARCHIVO', 'LG123456', 'ER234567'),
+('Reclamación por Lesiones Personales', 'EXP0008', 'Demanda por lesiones personales debido a un accidente.', 'APELACIÓN', 'CP234567', 'RL345678'),
+('Transacción Inmobiliaria', 'EXP0009', 'Compra y venta de una propiedad.', 'CUMPLIMIENTO', 'AM345678', 'SH456789'),
+('Fraude al Consumidor', 'EXP0010', 'Reclamación por fraude al consumidor.', 'CONCLUSIÓN', 'LF456789', 'MO567890'),
+('Demanda por Difamación', 'EXP0011', 'Caso de difamación contra una figura pública.', 'INICIO', 'MG567890', 'IV678901'),
+('Declaración de Bancarrota', 'EXP0012', 'Proceso de declaración de bancarrota.', 'NOTIFICACIÓN', 'JR678901', 'PR123456'),
+('Investigación por Evasión de Impuestos', 'EXP0013', 'Investigación por evasión fiscal.', 'EN TRÁMITE', 'LG123456', 'ER234567'),
+('Disputa por Fusión Corporativa', 'EXP0014', 'Disputa legal por la fusión de dos corporaciones.', 'EVALUACIÓN', 'CP234567', 'RL345678'),
+('Infracción de Patente', 'EXP0015', 'Demanda por infracción de patente tecnológica.', 'SENTENCIA', 'AM345678', 'SH456789'),
+('Caso de Inmigración', 'EXP0016', 'Representación en un caso de inmigración.', 'EJECUCIÓN', 'LF456789', 'MO567890'),
+('Violación de Seguridad Informática', 'EXP0017', 'Caso de violación de datos en una empresa.', 'ARCHIVO', 'MG567890', 'IV678901'),
+('Violación de Ley Ambiental', 'EXP0018', 'Caso de violación de normativas ambientales.', 'APELACIÓN', 'JR678901', 'PR123456'),
+('Disputa de Herencia Familiar', 'EXP0019', 'Disputa sobre la distribución de una herencia.', 'CUMPLIMIENTO', 'LG123456', 'ER234567'),
+('Acuerdo de Arrendamiento Comercial', 'EXP0020', 'Negociación de un contrato de arrendamiento comercial.', 'CONCLUSIÓN', 'CP234567', 'RL345678');
