@@ -7,14 +7,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
+                    
                     <div class="hero-text">
-                        <span>Emprecemos con tu asesoria ahora mismo</span>
-                        <h2>Consultas Legales <br /> a Tu Alcance</h2>
-                        <a href="#" class="primary-btn">Generar Consulta</a>
+                        <span>Solicita tu asesoría personalizada</span>
+                        <h2>Consultas Legales al Alcance de Todos</h2>
+                        <a href="#" class="primary-btn">Iniciar Consulta</a>
+                        <a href="#" class="segundo-btn">Consultar sobre mi Caso</a>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <img src="img/model.png" alt="">
+                    <img src="img/model 2.png" alt="">
                 </div>
             </div>
         </div>
@@ -27,8 +37,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="counter-text">
-                        <span>Prueba Gratuita</span>
-                        <h3>Registrate para <br />usar Arxatec GRATIS</h3>
+                        <span>Plan Gratuito</span>
+                        <h3>Por tiempo Limitado<br />prueba Arxatec GRATIS</h3>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -68,7 +78,8 @@
                     <div class="col-lg-6">
                         <div class="ha-text">
                             <h2>Sobre Arxatec</h2>
-                            <p>En Arxatec, ofrecemos una plataforma en línea que conecta a personas con abogados expertos para resolver sus dudas legales desde la comodidad de su hogar. Nuestro objetivo es brindar un servicio confiable, accesible y eficiente para facilitar el acceso a la justicia a través de consultas legales rápidas y sencillas.</p>
+                            <p>En Arxatec, ofrecemos una plataforma en línea que conecta a personas con abogados expertos para resolver sus dudas legales y solucionar conflictos desde la comodidad de su hogar. Nuestro objetivo es brindar un servicio confiable, accesible y eficiente, facilitando el acceso a la justicia a través de consultas legales rápidas y sencillas, para que puedas enfrentar y resolver tus problemas legales de manera efectiva.</p>
+
                             <ul>
                                 <li><span class="icon_check"></span> Consulta legal en línea</li>
                                 <li><span class="icon_check"></span> Asesoría personalizada</li>
@@ -120,6 +131,14 @@
     <?php
     require 'contacto.php';
     ?>
+
+    <!-- Mensaje a WhatsApp -->
+    <a href="https://web.whatsapp.com/send?phone=51960700355&text=Hola,%20estoy%20interesado%20en%20más%20información%20sobre%20ArxaTEC." class="whatsapp_float" target="_blank">
+            <img src="img/wsp.png" alt="WhatsApp" class="whatsapp-icon">
+            <span class="whatsapp-text">Contáctanos</span>
+        </a>
+
+        </main>me 
 
     <!-- Sección de Footer Comienza -->
         <footer class="footer-section">

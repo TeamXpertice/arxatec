@@ -10,56 +10,62 @@
     <div class="container">
         <div class="row no-gutters justify-content-center mb-5"></div>
         <div class="row no-gutters d-flex justify-content-center">
-            <div class="col-md-3 text-center">
-                <div class="practice-area border-b no-border-l ftco-animate">
-                    <!-- Servicio 1 -->
-                    <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
-                        <span><i class='bx bx-briefcase'></i></span>
-                    </div>
-                    <h3><a href="#">Derecho Familiar</a></h3>
-					<br>
-                    <p>Asesoría legal para procesos de divorcio, custodia de hijos y otros asuntos familiares.</p>
-					<br>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="practice-area border-b ftco-animate">
-                    <!-- Servicio 2 -->
-                    <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
-                        <span><i class='bx bx-briefcase'></i></span>
-                    </div>
-                    <h3><a href="#">Derecho Empresarial</a></h3>
-					<br>
-                    <p>Soluciones jurídicas para empresas, constitución hasta fusiones y adquisiciones.</p>
-					<br>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="practice-area border-b ftco-animate">
-                    <!-- Servicio 3 -->
-                    <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
-                        <span><i class='bx bx-home'></i></span>
-                    </div>
-                    <h3><a href="#">Derecho Inmobiliario</a></h3>
-					<br>
-                    <p>Asistencia en compra, venta y administración de bienes inmuebles y propiedades.</p>
-					<br>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="practice-area border-b ftco-animate">
-                    <!-- Servicio 4 -->
-                    <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
-                        <span><i class='bx bx-lock-alt'></i></span>
-                    </div>
-                    <h3><a href="#">Derecho Penal</a></h3>
-					<br>
-                    <p>Defensa legal en casos penales, garantizando tus derechos ante cualquier situación.</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
+        <div class="col-md-3 text-center">
+    <div class="practice-area border-b no-border-l ftco-animate">
+        <!-- Servicio 1 -->
+        <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
+            <span><i class='bx bx-briefcase'></i></span>
+        </div>
+        <h3><a href="#">Derecho Laboral</a></h3>
+        <br>
+        <br>
+        <p>Asesoría legal sobre derechos de los trabajadores, contratos y despidos injustificados.</p>
+        
+    </div>
+</div>
+<div class="col-md-3 text-center">
+    <div class="practice-area border-b ftco-animate">
+        <!-- Servicio 2 -->
+        <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
+            <span><i class='bx bx-briefcase'></i></span>
+        </div>
+        <h3><a href="#">Derecho de la Seguridad Social</a></h3>
+        <br>
+        <p>Orientación sobre beneficios y prestaciones de seguridad social para trabajadores.</p>
+        <br>
+    </div>
+</div>
+
+<div class="col-md-3 text-center">
+    <div class="practice-area border-b ftco-animate">
+        <!-- Servicio 4 -->
+        <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
+            <span><i class='bx bx-lock-alt'></i></span>
+        </div>
+        <h3><a href="#">Derecho Procesal Laboral</a></h3>
+        <br>
+        <p>Representación en conflictos laborales y procedimientos judiciales relacionados.</p>
+        <br>
+    </div>
+</div>
+
+<div class="col-md-3 text-center">
+    <div class="practice-area border-b ftco-animate">
+        <!-- Servicio 3 -->
+        <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
+            <span><i class='bx bx-home'></i></span>
+        </div>
+        <h3><a href="#">Derecho Colectivo</a></h3>
+        <br>
+        <p>Asesoría en negociación de convenios colectivos y defensa de derechos sindicales.</p>
+        <br>
+    </div>
+</div>
+
+            
+            <!-- <div class="col-md-3 text-center">
                 <div class="practice-area no-border-l ftco-animate">
-                    <!-- Servicio 5 -->
+                    
                     <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
                         <span><i class='bx bx-money'></i></span>
                     </div>	
@@ -71,7 +77,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="practice-area ftco-animate">
-                    <!-- Servicio 6 -->
+                    
                     <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
                         <span><i class='bx bx-user-voice'></i></span>
                     </div>
@@ -83,7 +89,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="practice-area ftco-animate">
-                    <!-- Servicio 7 -->
+                    
                     <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
                         <span><i class='bx bx-shield'></i></span>
                     </div>
@@ -95,7 +101,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="practice-area ftco-animate">
-                    <!-- Servicio 8 -->
+                    
                     <div class="col-md-3 col-sm-6 services-box margin-bottom-30">
                         <span><i class='bx bx-dollar-circle'></i></span>
                     </div>
@@ -104,7 +110,7 @@
                     <p>Gestión y solución de problemas relacionados con el ámbito financiero y fiscal.</p>
 					<br>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

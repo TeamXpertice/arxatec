@@ -12,26 +12,27 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-8">
                     <div class="price-item">
-                        <h4>Consulta Básica</h4>
+                        <div class="tr-tag">
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <h4>Plan GRATIS</h4>
                         <div class="pi-price">
-                            <h2><span>s/</span>20.00</h2>
+                            <h2><span>s/</span>0.00</h2>
                         </div>
                         <ul>
                             <li>Consulta legal individual</li>
                             <li>Atención en línea</li>
                             <li>Duración: 30 minutos</li>
                             <li>Respuesta en 48 horas</li>
-                            <li>Respuesta en 48 horas</li>
+                            <li>Consultas Limitadas</li>
                         </ul>
                         <a href="#" class="price-btn">Solicitar <span class="arrow_right"></span></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-8">
                     <div class="price-item top-rated">
-                        <div class="tr-tag">
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <h4>Consulta Completa</h4>
+                        
+                        <h4>PLAN PLATINUM</h4>
                         <div class="pi-price">
                             <h2><span>s/</span>60.00</h2>
                         </div>
@@ -47,7 +48,7 @@
                 </div>
                 <div class="col-lg-4 col-md-8">
                     <div class="price-item">
-                        <h4>Plan Corporativo</h4>
+                        <h4>Plan PREMIUM</h4>
                         <div class="pi-price">
                             <h2><span>s/</span>40.00</h2>
                         </div>

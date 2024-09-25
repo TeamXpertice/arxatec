@@ -27,7 +27,9 @@
     <link rel="icon" type="image/png" href="img/ARXATEC.png">
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
+    
+    <script src="//code.tidio.co/kznncbkn5aeub9pnnuczenbex8vife9a.js" async></script>
+    
 
 </head>
 
@@ -54,16 +56,17 @@
                                 <li><a href="#">Historia</a></li>
                                 <li><a href="#">Cronologia</a></li>
                                 <li><a href="#">Equipo</a></li>
-
+                                
                             </ul>
                         </li>
-
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Noticias</a></li>
+                        
+                        
                         <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Auxilios Legales</a></li>
+
                     </ul>
                 </nav>
-                <a href="../auth/index.php" class="primary-btn top-btn"> Iniciar Sesion <i class="fa fa-user"></i></a>
+                <a href="http://localhost:3000/admin" class="primary-btn top-btn" target="_blank">  Iniciar Sesion  <i class="fa fa-user"></i></a> 
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
