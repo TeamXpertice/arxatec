@@ -1,0 +1,198 @@
+/* Estilos generales */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Estilo del logo en la esquina superior izquierda */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.logo {
+    width: 130px;
+    height: auto;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+/* Contenedor del input */
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 25px 12px 12px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding-right: 40px; /* Deja espacio para el icono en el lado derecho */
+}
+
+input[type="email"]:hover,
+input[type="password"]:hover {
+    border: 1px solid #000;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border: 2px solid #000;
+    outline: none;
+}
+
+/* Estilo para el label */
+.static-label {
+    font-size: 11px;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 5px;
+    left: 12px;
+    pointer-events: none;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Estilo del icono de mostrar/ocultar contraseña */
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    display: none; /* Ocultar el icono por defecto */
+    opacity: 0.5; /* Reducir la opacidad para hacerlo menos notable */
+}
+
+.toggle-password i {
+    color: #999; /* Un color más claro para que sea menos notable */
+}
+
+.toggle-password:hover i {
+    color: #2b2b2b; /* Un poco más oscuro al hacer hover */
+    opacity: 1; /* Aumenta un poco la opacidad al hacer hover */
+}
+
+
+/* Estilos para el botón */
+button {
+    background-color: #000;
+    color: #fff;
+    padding: 22px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+/* Enlaces */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.footer-links a {
+    color: #007bff;
+}
+
+/* --- Media Queries para Responsividad --- */
+/* Para pantallas medianas como tablets (ancho máximo de 768px) */
+@media (max-width: 768px) {
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    button {
+        padding: 20px;
+    }
+
+    .logo {
+        width: 90px;
+    }
+}
+
+/* Para pantallas pequeñas como teléfonos móviles (ancho máximo de 480px) */
+@media (max-width: 480px) {
+    .container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        padding: 18px;
+        font-size: 14px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        padding: 20px 10px 10px;
+        font-size: 14px;
+    }
+
+    .static-label {
+        font-size: 10px;
+    }
+
+    .logo {
+        width: 70px;
+    }
+}

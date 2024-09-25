@@ -1,235 +1,202 @@
+<?php
+    require 'header.php';
+?>
 
-    <?php
-        include 'heading.php';
-    ?>
-
-    <body>
-
-    <!-- Pop-up de Publicidad -->
-        <!-- <div id="ad-popup" class="ad-popup">
-            <div class="ad-popup-content">
-                <span class="close-btn" onclick="closePopup()">&times;</span>
-                <img src="images/aguirre.jpeg" alt="Publicidad" class="ad-popup-image">
+    <!-- Hero Section Begin -->
+    <section class="hero-section set-bg" data-setbg="img/5.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="hero-text">
+                        <span>Emprecemos con tu asesoria ahora mismo</span>
+                        <h2>Consultas Legales <br /> a Tu Alcance</h2>
+                        <a href="#" class="primary-btn">Generar Consulta</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <img src="img/model.png" alt="">
+                </div>
             </div>
-        </div> -->
+        </div>
+    </section>
+    <!-- Hero Section End -->
 
-        <section class="preloader">
-            <div class="spinner">
-                <span class="sk-inner-circle"></span>
+    <!-- Counter Section Begin -->
+    <section class="counter-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="counter-text">
+                        <span>Prueba Gratuita</span>
+                        <h3>Registrate para <br />usar Arxatec GRATIS</h3>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="cd-timer" id="countdown">
+                        <div class="cd-item">
+                            <span>40</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>46</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>32</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Counter Section End -->
+
+    <!-- Sección Sobre Nosotros Comienza -->
+        <section class="home-about-section spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ha-pic">
+                            <img src="img/about.jpg" alt="Sobre Arxatec">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ha-text">
+                            <h2>Sobre Arxatec</h2>
+                            <p>En Arxatec, ofrecemos una plataforma en línea que conecta a personas con abogados expertos para resolver sus dudas legales desde la comodidad de su hogar. Nuestro objetivo es brindar un servicio confiable, accesible y eficiente para facilitar el acceso a la justicia a través de consultas legales rápidas y sencillas.</p>
+                            <ul>
+                                <li><span class="icon_check"></span> Consulta legal en línea</li>
+                                <li><span class="icon_check"></span> Asesoría personalizada</li>
+                                <li><span class="icon_check"></span> Soluciones rápidas y efectivas</li>
+                                <li><span class="icon_check"></span> Confidencialidad garantizada</li>
+                            </ul>
+                            <a href="#" class="ha-btn">Descubre Más</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-    
-        <main>
+    <!-- Sección Sobre Nosotros Termina -->
+
 
     <?php
-        include 'navbar.php';
+    require 'hechos.php';
     ?>
 
-            <section class="slick-slideshow">   
-                <div class="slick-custom">
-                    <!-- <img src="images/slideshow/medium-shot-business-women-high-five.jpeg" class="img-fluid" alt=""> -->
-                    <video src="images/slideshow/slider.mp4" class="img-fluid" alt="" preload="metadata" autoplay muted loop></video>
+    <?php
+    require 'services.php';
+    ?>
+
+<?php
+    require 'planes.php';
+    ?>
+
+<?php
+    require 'testimonios.php';
+    ?>
+<?php
+    require 'noticias.php';
+    ?>
 
 
-                    <div class="slick-bottom">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 col-10">
-                                    <h1 class="slick-title">Consultas Legales a Tu Alcance</h1>
-                                    
 
-                                    <p class="lead text-white mt-lg-3 mb-lg-5">ArxaTEC te ofrece asesoría legal amigable y accesible para todas tus necesidades.</p>
+    
+    
 
-                                    <a href="contact.html" class="btn custom-btn">Consulta con Nosotros</a>
-                                </div>
+
+   
+
+
+    
+
+    <?php
+    require 'team.php';
+    ?>
+    <?php
+    require 'contacto.php';
+    ?>
+
+    <!-- Sección de Footer Comienza -->
+        <footer class="footer-section">
+            <div class="container">
+                <div class="partner-logo owl-carousel">
+                    <a href="#" class="pl-table">
+                        <div class="pl-tablecell">
+                            <img src="img/partner-logo/logo-1.png" alt="Socio 1">
+                        </div>
+                    </a>
+                    <a href="#" class="pl-table">
+                        <div class="pl-tablecell">
+                            <img src="img/partner-logo/logo-2.png" alt="Socio 2">
+                        </div>
+                    </a>
+                    <a href="#" class="pl-table">
+                        <div class="pl-tablecell">
+                            <img src="img/partner-logo/logo-3.png" alt="Socio 3">
+                        </div>
+                    </a>
+                    <a href="#" class="pl-table">
+                        <div class="pl-tablecell">
+                            <img src="img/partner-logo/logo-4.png" alt="Socio 4">
+                        </div>
+                    </a>
+                    <a href="#" class="pl-table">
+                        <div class="pl-tablecell">
+                            <img src="img/partner-logo/logo-5.png" alt="Socio 5">
+                        </div>
+                    </a>
+                    <a href="#" class="pl-table">
+                        <div class="pl-tablecell">
+                            <img src="img/partner-logo/logo-6.png" alt="Socio 6">
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-text">
+                            <div class="ft-logo">
+                                <a href="#" class="footer-logo"><img src="img/logarxa1.png" alt="Logo Arxatec"></a>
+                            </div>
+                            <ul>
+                                <li><a href="#">Inicio</a></li>
+                                <li><a href="#">Servicios</a></li>
+                                <li><a href="#">Consultas</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contacto</a></li>
+                            </ul>
+                            <div class="copyright-text">
+                                <p> 
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados 
+                                </p>
+                            </div>
+                            <div class="ft-social">
+                                <a href="https://www.facebook.com/DerechoArbitrajeEmpresa" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href=""><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="https://www.instagram.com/grupo_aguirre_/" target="_blank"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/@grupoaguirre" target="_blank"><i class="fa fa-youtube-play"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </footer>
+    <!-- Sección de Footer Termina -->
 
-                <!-- <div class="slick-custom">
-                    
-                    <video src="images/slideshow/slider2.mp4" class="img-fluid" alt="" preload="metadata" autoplay muted></video>
 
-                    <div class="slick-bottom">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 col-10">
-                                    <h1 class="slick-title">Consultas Legales a Tu Alcance</h1>
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 
-                                    <p class="lead text-white mt-lg-3 mb-lg-5">ArxaTEC te ofrece asesoría legal amigable y accesible para todas tus necesidades.</p>
-
-                                    <a href="contact.html" class="btn custom-btn">Consulta con Nosotros</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="slick-custom">
-                    <img src="images/slideshow/slider3.jpg" class="img-fluid" alt="">
-
-                    <div class="slick-bottom">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 col-10">
-                                    <h1 class="slick-title">Consultas Legales a Tu Alcance</h1>
-
-                                    <p class="lead text-white mt-lg-3 mb-lg-5">ArxaTEC te ofrece asesoría legal amigable y accesible para todas tus necesidades.</p>
-
-                                    <a href="contact.html" class="btn custom-btn">Consulta con Nosotros</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-            </section>
-
-            <!-- Estoy agregando el about en el index  -->
-
-            <?php
-            include 'about-index.php';
-            ?>
-
-            <section class="front-product">
-                <div class="container-fluid p-0">
-                    <div class="row align-items-center">
-
-                        <div class="col-lg-6 col-12">
-                            <img src="images/servicios.jpg" class="img-fluid" alt="">
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="px-5 py-5 py-lg-0">
-                                
-                                <h2 class="mb-4">Conoce todos nuestros<span> servicios</span></h2>
-
-                                <p class="lead mb-4">Credits go to Unsplash and FreePik websites for images used in this Little Fashion by Tooplate.</p>
-
-                                <a href="products.html" class="custom-link">
-                                    Explore Products
-                                    <i class="bi-arrow-right ms-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="featured-product section-padding">
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-12 text-center">
-                            <h2 class="mb-5">Videos de tu <span>Interes</span> </h2>
-                        </div>
-
-                        <div class="col-lg-4 col-12 mb-3">
-                            <div class="product-thumb">
-                                <a href="https://www.facebook.com/reel/2234198293604509" target="_blank">
-                                    <img src="images/nacibase.png" class="img-fluid product-image" alt="">
-                                </a>
-
-                                <div class="product-top d-flex">
-                                    <span class="product-alert me-auto">Nuevo Video</span>
-
-                                    <a href="#" class="bi-heart-fill product-icon"></a>
-                                </div>
-
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <h5 class="product-title mb-0">
-                                            <br>
-                                            <a href="https://www.facebook.com/reel/2234198293604509" target="_blank" class="product-title-link">¿Como nacio LaBaseCowork?</a>
-                                        </h5>
-
-                                        <p class="product-p">Asi fue el nacimiento del mejor Cowork de Huancayo</p>
-                                    </div>
-
-                                    <small class="product-price text-muted ms-auto mt-auto mb-5"></small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12 mb-3">
-                            <div class="product-thumb">
-                                <a href="https://www.facebook.com/profile.php?id=100094472230413" target="_blank">
-                                    <img src="images/taller1.jpg" class="img-fluid product-image" alt="" >
-                                </a>
-
-                                <div class="product-top d-flex">
-                                    <span class="product-alert"></span>
-
-                                    <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
-                                </div>
-
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <h5 class="product-title mb-0">
-                                            <a href="https://www.facebook.com/profile.php?id=100094472230413" target="_blank" class="product-title-link">¿Que es el Coaching?</a>
-                                        </h5>
-
-                                        <p class="product-p">Coaching para tu emprendimiento</p>
-                                    </div>
-
-                                    <small class="product-price text-muted ms-auto mt-auto mb-5">Gratis</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12">
-                            <div class="product-thumb">
-                                <a href="https://www.facebook.com/profile.php?id=100094472230413" target="_blank">
-                                    <img src="images/taller2.jpg" class="img-fluid product-image" alt="">
-                                </a>
-
-                                <div class="product-top d-flex">
-                                    <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
-                                </div>
-
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <h5 class="product-title mb-0">
-                                            <a href="https://www.facebook.com/profile.php?id=100094472230413" target="_blank" class="product-title-link">Como registrar tu marca</a>
-                                        </h5>
-
-                                        <p class="product-p">Aprende a registrar tu marca</p>
-                                    </div>
-
-                                    <small class="product-price text-muted ms-auto mt-auto mb-5">Gratis</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 text-center">
-                            <a href="servicios.php" class="view-all">Ver todos nuestros programas</a>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-<!-- Mensaje a WhatsApp -->
-        <a href="https://web.whatsapp.com/send?phone=51960700355&text=Hola,%20estoy%20interesado%20en%20más%20información%20sobre%20ArxaTEC." class="whatsapp_float" target="_blank">
-            <img src="images/wsp.png" alt="WhatsApp" class="whatsapp-icon">
-            <span class="whatsapp-text">Contáctanos</span>
-        </a>
-
-        </main>me 
-
-        <?php
-        include 'footer.php';
-        ?>
-
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/Headroom.js"></script>
-        <script src="js/jQuery.headroom.js"></script>
-        <script src="js/slick.min.js"></script>
-        <script src="js/custom.js"></script>
-
-    </body>
 </html>
