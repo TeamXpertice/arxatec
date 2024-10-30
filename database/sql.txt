@@ -1,100 +1,150 @@
--- Crear la base de datos
 CREATE DATABASE IF NOT EXISTS arxatec;
 
--- Usar la base de datos
 USE arxatec;
 
--- Crear la tabla planes con nuevas columnas para consultas, asesorías y procedimientos
+-- Tabla de planes
 CREATE TABLE IF NOT EXISTS planes (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    plan_name VARCHAR(100) NOT NULL,
-    description TEXT,
-    price DECIMAL(10, 2) NOT NULL,
-    consultas INT(11) NOT NULL,  -- Nuevo campo para la cantidad de consultas
-    asesorias INT(11) NOT NULL,  -- Nuevo campo para la cantidad de asesorías
-    procedimientos INT(11) NOT NULL,  -- Nuevo campo para la cantidad de procedimientos
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    nombre_plan VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10, 2) NOT NULL,
+    consultas INT(11) NOT NULL,
+    asesorias INT(11) NOT NULL,
+    procedimientos INT(11) NOT NULL,
+    fecha_creacion DATE DEFAULT CURRENT_DATE,
+    hora_creacion TIME DEFAULT CURRENT_TIME
 );
 
--- Insertar algunos planes de ejemplo, incluyendo el plan Free con las nuevas características
-INSERT INTO planes (plan_name, description, price, consultas, asesorias, procedimientos) VALUES
-('Free', 'Plan gratuito con acceso limitado.', 0.00, 1, 0, 0),
-('Básico', 'Plan básico para clientes con acceso limitado.', 49.99, 6, 0, 2),
-('Premium', 'Plan premium con acceso completo a todos los servicios.', 99.99, 10, 10, 10),
-('Platinum', 'Plan platinum con beneficios exclusivos y atención personalizada.', 199.99, 3, 5, 0);
-
--- Crear la tabla usuarios
+-- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    usertype ENUM('admin', 'cliente', 'abogado') NOT NULL,
-    profile_image VARCHAR(255),
-    dni VARCHAR(20) UNIQUE NOT NULL,  -- Relacionamos con este campo
-    address VARCHAR(255),
-    phone_number VARCHAR(20),
-    additional_phone VARCHAR(20),
-    gender ENUM('Masculino', 'Femenino', 'Otro', 'Ninguno'),
-    date_of_birth DATE,
-    status ENUM('activo', 'suspendido') NOT NULL DEFAULT 'activo',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    plan_id INT(11) DEFAULT NULL,
-    FOREIGN KEY (plan_id) REFERENCES planes(id)
+    nombres VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    correo_electronico VARCHAR(100) NOT NULL UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    tipo_usuario ENUM('admin', 'cliente', 'abogado') NOT NULL,
+    imagen_perfil VARCHAR(255),
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    direccion VARCHAR(255),
+    telefono VARCHAR(20),
+    telefono_adicional VARCHAR(20),
+    genero ENUM('Masculino', 'Femenino', 'Otro', 'Ninguno'),
+    fecha_nacimiento DATE,
+    estado ENUM('activo', 'suspendido') NOT NULL DEFAULT 'activo',
+    fecha_hora_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Crear la tabla clientes_servicios para rastrear las consultas, asesorías y procedimientos de cada cliente, usando dni
-CREATE TABLE IF NOT EXISTS clientes_servicios (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    dni VARCHAR(20) NOT NULL,  -- Relación con el dni de la tabla usuarios
-    consultas_disponibles INT(11) NOT NULL,  -- Consultas disponibles para el cliente
-    asesorias_disponibles INT(11) NOT NULL,  -- Asesorías disponibles para el cliente
-    procedimientos_disponibles INT(11) NOT NULL,  -- Procedimientos disponibles para el cliente
+-- Tabla de datos adicionales de abogados
+CREATE TABLE IF NOT EXISTS abogados_datos (
+    dni VARCHAR(20) PRIMARY KEY,
+    cedula_colegiatura VARCHAR(50) NOT NULL,
     FOREIGN KEY (dni) REFERENCES usuarios(dni) ON DELETE CASCADE
 );
 
--- Crear la tabla historial_servicios para registrar el uso de consultas, asesorías y procedimientos
--- Se permite que abogado_dni sea NULL para consultas públicas
-CREATE TABLE IF NOT EXISTS historial_servicios (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    cliente_dni VARCHAR(20) NOT NULL,  -- Relación con el dni del cliente
-    abogado_dni VARCHAR(20) NULL,  -- Relación con el dni del abogado, puede ser NULL para consultas públicas
-    asunto VARCHAR(255) NOT NULL,  -- Nuevo campo para el asunto de la consulta
-    tipo_servicio ENUM('consulta', 'asesoria', 'procedimiento') NOT NULL,  -- Tipo de servicio
-    fecha_servicio DATE NOT NULL,  -- Fecha del servicio (modificada para tener campo separado)
-    hora_servicio TIME NOT NULL,   -- Hora del servicio (modificada para tener campo separado)
-    descripcion TEXT NOT NULL,  -- Descripción del servicio
-    tipo_consulta ENUM('publico', 'privado', 'propio') NOT NULL DEFAULT 'publico',
-    estado ENUM('confirmada','pendiente', 'cancelada', 'en proceso', 'finalizada') NOT NULL DEFAULT 'pendiente',  -- Campo para el estado del servicio
-    fecha_creacion DATE DEFAULT CURRENT_DATE,  -- Campo automático para la fecha de creación
-    hora_creacion TIME DEFAULT CURRENT_TIME,   -- Campo automático para la hora de creación
-    FOREIGN KEY (cliente_dni) REFERENCES usuarios(dni) ON DELETE CASCADE,
-    FOREIGN KEY (abogado_dni) REFERENCES usuarios(dni) ON DELETE CASCADE
+-- Tabla de datos adicionales de clientes
+CREATE TABLE IF NOT EXISTS clientes_datos (
+    dni VARCHAR(20) PRIMARY KEY,
+    id_plan INT(11) NOT NULL,
+    FOREIGN KEY (dni) REFERENCES usuarios(dni) ON DELETE CASCADE,
+    FOREIGN KEY (id_plan) REFERENCES planes(id)
 );
 
--- Insertar usuarios de ejemplo
-INSERT INTO usuarios (username, email, password, usertype, dni, address, phone_number, additional_phone, gender, date_of_birth, status, profile_image, plan_id)
-VALUES 
-('admin', 'admin@gmail.com', 'admin', 'admin', 'ADMIN1234', '123 Calle Principal', '555-1234', '555-5678', 'Masculino', '1980-01-01', 'activo', '../../../shared/uploads/profile_images/768822091.png', NULL),
-('cliente', 'cliente@gmail.com', 'cliente', 'cliente', 'CLI1234', 'Calle del Cliente', '555-0000', '555-1111', 'Masculino', '1985-05-05', 'activo', '../../../shared/uploads/profile_images/cliente.png', 1),  -- Plan Free
-('Rafael', 'abogado@gmail.com', 'abogado', 'abogado', 'ABG1234', 'Calle del Abogado', '555-2222', '555-3333', 'Masculino', '1986-06-06', 'activo', '../../../shared/uploads/profile_images/ABG1234.jpg', NULL),
--- Insertar clientes adicionales
-('Laura González', 'laura.gonzalez@example.com', 'laura123', 'cliente', 'LG123456', 'Calle Falsa 123', '555-1122', '555-3344', 'Femenino', '1987-04-21', 'activo', '../../../shared/uploads/profile_images/cliente.png', 2),
-('Carlos Pérez', 'carlos.perez@example.com', 'carlos123', 'cliente', 'CP234567', 'Avenida Siempre Viva 742', '555-2233', '555-4455', 'Masculino', '1991-09-14', 'activo', '../../../shared/uploads/profile_images/cliente.png', 3),
-('María Gómez', 'maria.gomez@example.com', 'maria123', 'cliente', 'MG567890', 'Boulevard de los Ilustres 23', '555-5566', '555-7788', 'Femenino', '1988-06-17', 'activo', '../../../shared/uploads/profile_images/cliente.png', 3),
--- Insertar abogados adicionales
-('José Martínez', 'jose.martinez@example.com', 'jose123', 'abogado', 'ABG0001', 'Calle Abogados 1', '555-4444', '555-8888', 'Masculino', '1985-01-01', 'activo', '../../../shared/uploads/profile_images/uno.jpg', NULL),
-('Antonio Ruiz', 'antonio.ruiz@example.com', 'antonio123', 'abogado', 'ABG0002', 'Calle Abogados 2', '555-5555', '555-9999', 'Masculino', '1990-02-02', 'activo', '../../../shared/uploads/profile_images/dos.jpg', NULL),
-('Lucía González', 'lucia.gonzalez@example.com', 'lucia123', 'abogado', 'ABG0003', 'Calle Abogados 3', '555-6666', '555-0000', 'Femenino', '1995-03-03', 'activo', '../../../shared/uploads/profile_images/cuatro.jpg', NULL),
-('Fernando Torres', 'fernando.torres@example.com', 'fernando123', 'abogado', 'ABG0004', 'Calle Abogados 4', '555-7777', '555-1111', 'Masculino', '1988-04-04', 'activo', '../../../shared/uploads/profile_images/tres.jpg', NULL);
+-- Tabla de datos adicionales de administradores
+CREATE TABLE IF NOT EXISTS admins_datos (
+    dni VARCHAR(20) PRIMARY KEY,
+    notas TEXT,
+    FOREIGN KEY (dni) REFERENCES usuarios(dni) ON DELETE CASCADE
+);
 
--- Insertar los servicios correspondientes para los usuarios según su plan usando dni
-INSERT INTO clientes_servicios (dni, consultas_disponibles, asesorias_disponibles, procedimientos_disponibles)
-SELECT 
-    usuarios.dni, 
-    planes.consultas, 
-    planes.asesorias, 
-    planes.procedimientos
-FROM usuarios
-JOIN planes ON usuarios.plan_id = planes.id;
+-- Tabla de clientes_servicios
+CREATE TABLE IF NOT EXISTS clientes_servicios (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    dni VARCHAR(20) NOT NULL,
+    consultas_disponibles INT(11) NOT NULL,
+    asesorias_disponibles INT(11) NOT NULL,
+    procedimientos_disponibles INT(11) NOT NULL,
+    FOREIGN KEY (dni) REFERENCES usuarios(dni) ON DELETE CASCADE
+);
+
+-- Tabla de servicio_consultas_videollamadas (anteriormente historial_consultas_videollamada)
+CREATE TABLE IF NOT EXISTS servicio_consultas_videollamadas (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    dni_cliente VARCHAR(20) NOT NULL,
+    dni_abogado VARCHAR(20) NULL,
+    asunto VARCHAR(255) NOT NULL,
+    tipo_servicio ENUM('consulta', 'asesoria', 'procedimiento') NOT NULL,
+    fecha_servicio DATE NOT NULL,
+    hora_servicio TIME NOT NULL,
+    descripcion TEXT NOT NULL,
+    tipo_consulta ENUM('publico', 'privado', 'propio') NOT NULL DEFAULT 'publico',
+    estado ENUM('confirmada','pendiente', 'cancelada', 'en proceso', 'finalizada') NOT NULL DEFAULT 'pendiente',
+    fecha_creacion DATE DEFAULT CURRENT_DATE,
+    hora_creacion TIME DEFAULT CURRENT_TIME,
+    link_videollamada VARCHAR(255),
+    mensaje TEXT,
+    FOREIGN KEY (dni_cliente) REFERENCES usuarios(dni) ON DELETE CASCADE,
+    FOREIGN KEY (dni_abogado) REFERENCES usuarios(dni) ON DELETE CASCADE
+);
+
+-- Tabla de servicio_consultas_mensajes (anteriormente historial_consultas_mensaje)
+CREATE TABLE IF NOT EXISTS servicio_consultas_mensajes (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    dni_cliente VARCHAR(20) NOT NULL,
+    dni_abogado VARCHAR(20) NULL,
+    asunto VARCHAR(255) NOT NULL,
+    mensaje TEXT NOT NULL,
+    respuesta TEXT,
+    fecha_consulta DATE NOT NULL DEFAULT CURRENT_DATE,
+    hora_consulta TIME NOT NULL DEFAULT CURRENT_TIME,
+    estado ENUM('pendiente', 'respondida', 'finalizada') NOT NULL DEFAULT 'pendiente',
+    fecha_creacion DATE DEFAULT CURRENT_DATE,
+    hora_creacion TIME DEFAULT CURRENT_TIME,
+    FOREIGN KEY (dni_cliente) REFERENCES usuarios(dni) ON DELETE CASCADE,
+    FOREIGN KEY (dni_abogado) REFERENCES usuarios(dni) ON DELETE CASCADE
+);
+
+-- Tabla de historial_compras_planes (anteriormente historial_compras)
+CREATE TABLE IF NOT EXISTS historial_compras_planes (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    dni_cliente VARCHAR(20) NOT NULL,
+    id_plan INT(11) NOT NULL,
+    fecha_compra DATE NOT NULL DEFAULT CURRENT_DATE,
+    estado ENUM('pagado', 'pendiente', 'cancelado', 'reembolsado') NOT NULL DEFAULT 'pagado',
+    FOREIGN KEY (dni_cliente) REFERENCES usuarios(dni) ON DELETE CASCADE,
+    FOREIGN KEY (id_plan) REFERENCES planes(id)
+);
+
+-- Insertar datos de prueba en la tabla de planes
+INSERT INTO planes (nombre_plan, descripcion, precio, consultas, asesorias, procedimientos, fecha_creacion, hora_creacion) VALUES
+('Free', 'Plan gratuito con acceso limitado.', 0.00, 1, 0, 0, CURRENT_DATE, CURRENT_TIME),
+('Básico', 'Plan básico para clientes con acceso limitado.', 49.99, 6, 0, 2, CURRENT_DATE, CURRENT_TIME),
+('Premium', 'Plan premium con acceso completo a todos los servicios.', 99.99, 10, 10, 10, CURRENT_DATE, CURRENT_TIME),
+('Platinum', 'Plan platinum con beneficios exclusivos y atención personalizada.', 199.99, 3, 5, 0, CURRENT_DATE, CURRENT_TIME);
+
+-- Insertar datos en la tabla de usuarios
+INSERT INTO usuarios (nombres, apellidos, correo_electronico, contraseña, tipo_usuario, dni, direccion, telefono, telefono_adicional, genero, fecha_nacimiento, estado, imagen_perfil)
+VALUES 
+('Admin', 'Usuario', 'admin@gmail.com', 'admin', 'admin', 'ADMIN1234', '123 Calle Principal', '555-1234', '555-5678', 'Masculino', '1980-01-01', 'activo', '../../../shared/uploads/profile_images/768822091.png'),
+('Cliente', 'Usuario', 'cliente@gmail.com', 'cliente', 'cliente', 'CLI1234', 'Calle del Cliente', '555-0000', '555-1111', 'Masculino', '1985-05-05', 'activo', '../../../shared/uploads/profile_images/cliente.png'),
+('Rafael', 'Apellido', 'abogado@gmail.com', 'abogado', 'abogado', 'ABG1234', 'Calle del Abogado', '555-2222', '555-3333', 'Masculino', '1986-06-06', 'activo', '../../../shared/uploads/profile_images/ABG1234.jpg');
+
+-- Insertar datos en la tabla de admins_datos
+INSERT INTO admins_datos (dni, notas)
+VALUES
+('ADMIN1234', 'Administrador principal con acceso completo.');
+
+-- Insertar datos en la tabla de clientes_datos
+INSERT INTO clientes_datos (dni, id_plan)
+VALUES
+('CLI1234', 1);
+
+-- Insertar datos en la tabla de abogados_datos
+INSERT INTO abogados_datos (dni, cedula_colegiatura)
+VALUES
+('ABG1234', 'COLEGIO123');
+
+-- Insertar datos de prueba en la tabla de historial_compras_planes
+INSERT INTO historial_compras_planes (dni_cliente, id_plan, fecha_compra, estado) VALUES
+('CLI1234', 2, CURRENT_DATE, 'pagado'),
+('CLI1234', 3, CURRENT_DATE, 'pendiente'),
+('CLI1234', 1, CURRENT_DATE, 'cancelado');
